@@ -31,6 +31,7 @@ body {
   overflow-x: hidden;
   cursor: none;
 }
+a, button { cursor: none; }
 
 /* ── CUSTOM CURSOR ── */
 .cursor {
@@ -38,22 +39,23 @@ body {
   background: var(--gold);
   border-radius: 50%;
   position: fixed;
-  top: 0; left: 0;
+  top: -20px; left: -20px;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.15s ease;
-  mix-blend-mode: difference;
+  transition: transform 0.2s ease;
+  will-change: left, top;
 }
 .cursor-ring {
   width: 36px; height: 36px;
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   position: fixed;
-  top: 0; left: 0;
+  top: -20px; left: -20px;
   pointer-events: none;
   z-index: 9998;
-  transition: all 0.12s ease;
-  opacity: 0.5;
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+  will-change: left, top;
 }
 
 /* ── NAV ── */
@@ -534,6 +536,7 @@ section {
   opacity: 0;
   transform: translateX(-20px);
   transition: all 0.6s ease;
+  animation: revealFallback 0s ease 1.5s forwards;
 }
 
 .exp-item.visible {
@@ -860,6 +863,10 @@ footer span { color: var(--gold); }
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: revealFallback 0s ease 1.5s forwards;
+}
+@keyframes revealFallback {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal.visible {
@@ -902,6 +909,7 @@ footer span { color: var(--gold); }
     <li><a href="#experience">Experience</a></li>
     <li><a href="#project">Project</a></li>
     <li><a href="#clients">Clients</a></li>
+    <li><a href="https://www.linkedin.com/in/abpatil005" target="_blank">LinkedIn</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -923,7 +931,7 @@ footer span { color: var(--gold); }
     </h1>
 
     <p class="hero-desc">
-      QA Automation &amp; Manual Testing Engineer with <strong style="color:var(--white)">4+ years</strong> of experience building robust test frameworks and ensuring enterprise-grade software quality across telecom, fintech &amp; digital sectors.
+      QA Automation &amp; Manual Testing Engineer with <strong style="color:var(--white)">4+ years</strong> of experience building robust test frameworks and ensuring enterprise-grade software quality across telecom, fintech &amp; digital sectors. Proficient in Selenium WebDriver, TestNG, Java, and CI/CD pipelines.
     </p>
 
     <div class="hero-ctas">
@@ -993,12 +1001,13 @@ footer span { color: var(--gold); }
           <div class="t-blank"></div>
           <div class="t-line"><span class="t-out">{</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-val">"Abhishek Patil"</span>,</span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"QA Automation Engineer"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"QA Automation &amp; Manual Testing Engineer"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Hyderabad, IN"</span>,</span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"automation"</span>: [</span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Selenium"</span>, <span class="t-val">"TestNG"</span>, <span class="t-val">"Java"</span></span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;],</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Hyderabad, India"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"email"</span>: <span class="t-val">"abhishekpatil620@gmail.com"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"linkedin"</span>: <span class="t-val">"linkedin.com/in/abpatil005"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"github"</span>: <span class="t-val">"github.com/abpatil005"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"clients"</span>: <span class="t-val">"14+"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"awards"</span>: <span class="t-val">"Star Performer x2"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val" style="color:#28C840">"open_to_work"</span></span></div>
           <div class="t-line"><span class="t-out">}</span></div>
@@ -1205,6 +1214,9 @@ footer span { color: var(--gold); }
       <a class="contact-link" href="https://github.com/abpatil005" target="_blank">
         ⌥ &nbsp; github.com/abpatil005
       </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/abpatil005" target="_blank">
+        🔗 &nbsp; linkedin.com/in/abpatil005
+      </a>
     </div>
 
     <a href="mailto:abhishekpatil620@gmail.com" class="btn-primary">Send Me a Message</a>
@@ -1213,7 +1225,7 @@ footer span { color: var(--gold); }
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <p>© 2025 <span>Abhishek Patil</span> — QA Automation Engineer</p>
+  <p>© 2026 <span>Abhishek Patil</span> — QA Automation &amp; Manual Testing Engineer</p>
   <p>Built with precision. Tested with care <span>✦</span></p>
 </footer>
 
@@ -1228,31 +1240,37 @@ footer span { color: var(--gold); }
 // Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
-let mx = 0, my = 0, rx = 0, ry = 0;
+let mx = -20, my = -20, rx = -20, ry = -20;
+let rafId;
 
 document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cursor.style.left = mx - 5 + 'px';
-  cursor.style.top = my - 5 + 'px';
+  mx = e.clientX;
+  my = e.clientY;
+  cursor.style.left = (mx - 5) + 'px';
+  cursor.style.top  = (my - 5) + 'px';
 });
 
 function animRing() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  ring.style.left = rx - 18 + 'px';
-  ring.style.top = ry - 18 + 'px';
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  ring.style.left = (rx - 18) + 'px';
+  ring.style.top  = (ry - 18) + 'px';
   requestAnimationFrame(animRing);
 }
 animRing();
 
-document.querySelectorAll('a, button').forEach(el => {
+document.querySelectorAll('a, button, .skill-card, .client-card, .stat-card').forEach(el => {
   el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(2.5)';
-    ring.style.opacity = '0.2';
+    cursor.style.transform = 'scale(2.8)';
+    cursor.style.background = 'var(--gold2)';
+    ring.style.transform = 'scale(1.4)';
+    ring.style.opacity = '0.3';
   });
   el.addEventListener('mouseleave', () => {
     cursor.style.transform = 'scale(1)';
-    ring.style.opacity = '0.5';
+    cursor.style.background = 'var(--gold)';
+    ring.style.transform = 'scale(1)';
+    ring.style.opacity = '0.6';
   });
 });
 
