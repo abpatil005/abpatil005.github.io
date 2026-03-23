@@ -880,17 +880,178 @@ footer span { color: var(--gold); }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ── RESPONSIVE ── */
+/* ── HAMBURGER MENU ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,12,15,0.98);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ── TABLET (max 900px) ── */
 @media (max-width: 900px) {
+  /* Nav */
   nav { padding: 16px 24px; }
   .nav-links { display: none; }
-  .hero { padding: 100px 24px 60px; flex-direction: column; }
-  .hero-stats { position: static; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; margin-top: 48px; width: 100%; }
-  .stat-card { flex: 1; min-width: 120px; }
+  .hamburger { display: flex; }
+
+  /* Hero */
+  .hero { padding: 100px 24px 60px; flex-direction: column; min-height: auto; }
+  .hero-content { max-width: 100%; }
+  .hero-name { font-size: clamp(42px, 10vw, 72px); letter-spacing: -2px; }
+  .hero-desc { font-size: 15px; max-width: 100%; }
+  .hero-stats {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 48px;
+    width: 100%;
+    gap: 12px;
+    animation: none;
+    opacity: 1;
+  }
+  .stat-card { flex: 1; min-width: 100px; padding: 16px 12px; }
+  .stat-num { font-size: 28px; }
+  .scroll-hint { display: none; }
+
+  /* Sections */
   section { padding: 70px 24px; }
-  .about-grid { grid-template-columns: 1fr; }
-  .project-card { grid-template-columns: 1fr; }
-  .scroll-hint { left: 24px; }
+  .section-title { font-size: clamp(28px, 6vw, 44px); margin-bottom: 40px; }
+
+  /* About */
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .terminal-body { font-size: 11px; padding: 16px; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .skill-card { padding: 20px; }
+
+  /* Experience */
+  .exp-content { padding: 20px; }
+  .exp-header { flex-direction: column; gap: 6px; }
+  .exp-date { align-self: flex-start; }
+
+  /* Projects */
+  .project-card { grid-template-columns: 1fr; padding: 24px; gap: 0; }
+  .project-card > div:last-child { display: none; }
+
+  /* Clients */
+  .clients-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+
+  /* Contact */
+  .contact-card { padding: 36px 24px; }
+  .contact-links { flex-direction: column; align-items: center; gap: 10px; }
+  .contact-link { width: 100%; max-width: 320px; justify-content: center; }
+
+  /* Footer */
   footer { flex-direction: column; gap: 8px; text-align: center; padding: 24px; }
+}
+
+/* ── MOBILE (max 600px) ── */
+@media (max-width: 600px) {
+  /* Nav */
+  nav { padding: 14px 20px; }
+
+  /* Hero */
+  .hero { padding: 90px 20px 50px; }
+  .hero-tag { margin-bottom: 20px; }
+  .hero-tag span { font-size: 10px; letter-spacing: 1px; }
+  .hero-name { font-size: clamp(38px, 12vw, 56px); margin-bottom: 16px; }
+  .hero-desc { font-size: 14px; margin-bottom: 32px; }
+  .hero-ctas { flex-direction: column; gap: 12px; }
+  .btn-primary, .btn-secondary { text-align: center; padding: 14px 24px; width: 100%; max-width: 280px; }
+  .hero-stats { gap: 10px; }
+  .stat-card { min-width: 80px; padding: 12px 10px; }
+  .stat-num { font-size: 22px; }
+  .stat-label { font-size: 8px; }
+
+  /* Sections */
+  section { padding: 56px 20px; }
+  .section-label { font-size: 10px; }
+  .section-title { font-size: clamp(26px, 8vw, 36px); letter-spacing: -1px; margin-bottom: 32px; }
+
+  /* About */
+  .about-grid { gap: 32px; }
+  .about-text p { font-size: 14px; }
+  .terminal { font-size: 11px; }
+  .terminal-body { font-size: 10.5px; line-height: 1.8; padding: 14px; }
+
+  /* Skills */
+  .skills-grid { grid-template-columns: 1fr; gap: 12px; }
+  .skill-icon { font-size: 22px; margin-bottom: 10px; }
+  .skill-name { font-size: 15px; }
+
+  /* Experience */
+  .exp-item { grid-template-columns: 36px 1fr; }
+  .exp-content { padding: 16px; margin-left: 8px; }
+  .exp-title { font-size: 16px; }
+  .exp-date { font-size: 10px; padding: 3px 8px; }
+  .exp-company { font-size: 12px; }
+  .exp-bullets li { font-size: 13px; }
+  .exp-chips { gap: 6px; }
+  .exp-chip { font-size: 9px; padding: 3px 8px; }
+
+  /* Projects */
+  .project-card { padding: 20px; }
+  .proj-name { font-size: 18px; }
+  .proj-stack { font-size: 10px; }
+  .proj-bullets li { font-size: 12px; }
+  .proj-link { font-size: 10px; padding: 8px 14px; }
+
+  /* Clients */
+  .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .client-card { padding: 14px 10px; font-size: 11px; }
+
+  /* Contact */
+  .contact-card { padding: 28px 20px; }
+  .contact-card p { font-size: 14px; margin-bottom: 28px; }
+  .contact-link { font-size: 11px; padding: 10px 14px; }
+
+  /* Footer */
+  footer { padding: 20px; }
+  footer p { font-size: 10px; }
+
+  /* Cursor — hide on touch devices */
+  .cursor, .cursor-ring { display: none; }
+  body { cursor: auto; }
+  a, button { cursor: pointer; }
 }
 </style>
 </head>
@@ -900,6 +1061,17 @@ footer span { color: var(--gold); }
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#project" onclick="closeMobile()">Projects</a>
+  <a href="#clients" onclick="closeMobile()">Clients</a>
+  <a href="https://www.linkedin.com/in/abpatil005" target="_blank" onclick="closeMobile()">LinkedIn</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
 <!-- ══ NAV ══ -->
 <nav>
   <div class="nav-logo">AP<span>.</span></div>
@@ -907,11 +1079,14 @@ footer span { color: var(--gold); }
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
-    <li><a href="#project">Project</a></li>
+    <li><a href="#project">Projects</a></li>
     <li><a href="#clients">Clients</a></li>
     <li><a href="https://www.linkedin.com/in/abpatil005" target="_blank">LinkedIn</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <!-- ══ HERO ══ -->
@@ -931,7 +1106,7 @@ footer span { color: var(--gold); }
     </h1>
 
     <p class="hero-desc">
-      QA Automation &amp; Manual Testing Engineer with <strong style="color:var(--white)">4+ years</strong> of experience building robust test frameworks and ensuring enterprise-grade software quality across telecom, fintech &amp; digital sectors. Proficient in Selenium WebDriver, TestNG, Java, and CI/CD pipelines.
+      QA Automation Engineer with <strong style="color:var(--white)">4+ years</strong> of experience and author of two open-source automation frameworks — a Selenium/Java UI framework and a Postman/Newman API framework, both CI/CD integrated on GitHub. Serving 14+ enterprise clients across telecom, fintech &amp; digital sectors.
     </p>
 
     <div class="hero-ctas">
@@ -977,13 +1152,13 @@ footer span { color: var(--gold); }
   <div class="about-grid">
     <div class="about-text reveal reveal-delay-2">
       <p>
-        I'm a <strong>QA Automation Engineer</strong> based in Hyderabad with a passion for breaking things before your users do. With 4+ years of experience across enterprise web applications, I specialise in building scalable automation frameworks that make teams faster and more confident in every release.
+        I'm a <strong>QA Automation Engineer</strong> based in Hyderabad — and the author of two open-source automation frameworks on GitHub. I specialise in building scalable test automation that makes teams faster and more confident in every release.
       </p>
       <p>
-        My approach combines the precision of automation — <strong>Selenium WebDriver, TestNG, Java, Page Object Model</strong> — with the intuition of manual testing to catch what scripts miss. I've worked across telecom, fintech, and digital sectors, collaborating with cross-functional teams in fast-paced Agile environments.
+        My stack: <strong>Selenium WebDriver, TestNG, Java, Page Object Model</strong> for UI automation, and <strong>Postman, Newman, GitHub Actions</strong> for API automation — both frameworks are live, CI/CD integrated, and publicly available. I've also worked extensively with manual testing, defect management in JIRA, and Agile delivery.
       </p>
       <p>
-        I've reduced regression testing effort by <strong>~40%</strong> through automation frameworks, identified 100+ critical defects, and earned the Star Performer award twice for delivery excellence.
+        Reduced regression effort by <strong>~40%</strong>, identified 100+ defects across 14+ enterprise clients, and earned the <strong>Star Performer of the Month award twice</strong> for outstanding delivery.
       </p>
       <div class="highlight">📍 Hyderabad, India &nbsp;·&nbsp; Open to Remote &amp; On-site Roles</div>
     </div>
@@ -1004,7 +1179,7 @@ footer span { color: var(--gold); }
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"QA Automation &amp; Manual Testing Engineer"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"experience"</span>: <span class="t-val">"4+ years"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-val">"Hyderabad, India"</span>,</span></div>
-          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"email"</span>: <span class="t-val">"abhishekpatil620@gmail.com"</span>,</span></div>
+          <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"email"</span>: <span class="t-val">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="58393a30312b303d3328392c31346e6a68183f35393134763b3735">[email&#160;protected]</a>"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"linkedin"</span>: <span class="t-val">"linkedin.com/in/abpatil005"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"github"</span>: <span class="t-val">"github.com/abpatil005"</span>,</span></div>
           <div class="t-line"><span class="t-out">&nbsp;&nbsp;<span class="t-key">"clients"</span>: <span class="t-val">"14+"</span>,</span></div>
@@ -1034,6 +1209,8 @@ footer span { color: var(--gold); }
         <span class="skill-tag">TestNG</span>
         <span class="skill-tag">Maven</span>
         <span class="skill-tag">POM</span>
+        <span class="skill-tag">Data-Driven Testing</span>
+        <span class="skill-tag">Hybrid Framework</span>
         <span class="skill-tag">Cucumber/BDD</span>
         <span class="skill-tag">Playwright</span>
       </div>
@@ -1059,8 +1236,9 @@ footer span { color: var(--gold); }
       <p style="font-size:13px;color:var(--muted);line-height:1.6;">Validating REST APIs for correctness, reliability and security before they reach production.</p>
       <div class="skill-tags">
         <span class="skill-tag">Postman</span>
+        <span class="skill-tag">Newman</span>
+        <span class="skill-tag">REST Assured</span>
         <span class="skill-tag">REST API</span>
-        <span class="skill-tag">Request/Response</span>
         <span class="skill-tag">Status Codes</span>
       </div>
     </div>
@@ -1096,8 +1274,8 @@ footer span { color: var(--gold); }
       <div class="skill-tags">
         <span class="skill-tag">Java</span>
         <span class="skill-tag">SQL</span>
-        <span class="skill-tag">HTML/CSS</span>
-        <span class="skill-tag">DOM</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Node.js</span>
       </div>
     </div>
   </div>
@@ -1122,14 +1300,17 @@ footer span { color: var(--gold); }
         <div class="exp-location">📍 Hyderabad, India</div>
 
         <ul class="exp-bullets">
-          <li>Built a Selenium WebDriver + TestNG automation framework from scratch using Page Object Model (POM), cutting manual regression effort by ~40%</li>
-          <li>Executed 200+ manual test cases and identified 100+ defects across 14+ enterprise client projects, significantly improving release quality</li>
-          <li>Integrated automated test suites into Jenkins & GitHub Actions CI/CD pipelines, enabling continuous testing and faster deployments</li>
-          <li>Conducted REST API testing via Postman — validated request/response structures, status codes, and data integrity across backend services</li>
-          <li>Implemented retry mechanisms for flaky test handling and Extent Reports for rich HTML test reporting</li>
-          <li>Logged, triaged, and tracked defects in JIRA; collaborated with developers in Agile sprints to drive faster resolution</li>
-          <li>Performed functional, regression, smoke, UAT, integration, and cross-browser testing across multiple enterprise applications</li>
-          <li>Recognised with Star Performer of the Month award twice for outstanding quality delivery</li>
+          <li>Designed and developed Selenium WebDriver automation framework from scratch using TestNG and Page Object Model, reducing manual regression effort by ~40%</li>
+          <li>Automated critical end-to-end business workflows improving test coverage and release confidence across multiple enterprise applications</li>
+          <li>Executed 200+ test cases and identified 100+ defects, improving product quality and minimising production issues</li>
+          <li>Integrated automation suite with Jenkins and GitHub Actions enabling CI/CD-based continuous testing</li>
+          <li>Performed REST API testing using Postman validating request/response, authentication, and data integrity across backend services</li>
+          <li>Implemented retry mechanisms and enhanced test stability, reducing flaky failures in CI pipeline</li>
+          <li>Generated rich HTML reports using Extent Reports for improved test visibility across teams</li>
+          <li>Collaborated with developers and product teams in Agile sprints for faster defect resolution</li>
+          <li>Executed functional, regression, and UAT testing ensuring stable production releases with minimal defect leakage</li>
+          <li>Identified high-risk areas and prioritised automation scenarios to maximise regression coverage</li>
+          <li>Recognised with Star Performer of the Month award twice for outstanding quality delivery and on-time project completion</li>
         </ul>
 
         <div class="exp-chips">
@@ -1145,22 +1326,21 @@ footer span { color: var(--gold); }
   </div>
 </section>
 
-<!-- ══ PROJECT ══ -->
+<!-- ══ PROJECTS ══ -->
 <section id="project" style="background:var(--bg2)">
   <div class="section-label reveal">Open Source</div>
-  <h2 class="section-title reveal reveal-delay-1">Featured <em>Project</em></h2>
+  <h2 class="section-title reveal reveal-delay-1">Featured <em>Projects</em></h2>
 
-  <div class="project-card reveal reveal-delay-2">
+  <div class="project-card reveal reveal-delay-2" style="margin-bottom:24px;">
     <div>
       <div class="proj-name">Selenium Test Automation Framework</div>
       <div class="proj-stack">JAVA &nbsp;·&nbsp; SELENIUM WEBDRIVER &nbsp;·&nbsp; TESTNG &nbsp;·&nbsp; MAVEN &nbsp;·&nbsp; EXTENT REPORTS &nbsp;·&nbsp; GIT</div>
-      <p class="proj-desc">A production-grade, scalable test automation framework built from scratch using industry best practices. Designed to be maintainable, reusable, and CI/CD ready.</p>
+      <p class="proj-desc">A production-grade, scalable UI test automation framework built from scratch. Designed to be maintainable, reusable, and CI/CD ready.</p>
       <ul class="proj-bullets">
-        <li>Designed scalable architecture with Page Object Model for reusable, maintainable test components</li>
-        <li>Implemented parallel test execution via TestNG with detailed HTML reporting through Extent Reports</li>
-        <li>Built utility classes for dynamic waits, screenshots, and configuration management</li>
-        <li>Added retry mechanism to handle flaky failures and stabilise CI pipeline runs</li>
-        <li>Managed via Git with branching strategy, pull requests, and peer code reviews</li>
+        <li>Designed scalable framework architecture using Page Object Model with reusable utility classes for waits, screenshots, and configuration management</li>
+        <li>Implemented parallel execution using TestNG to reduce suite execution time across test environments</li>
+        <li>Added retry mechanism for flaky tests and Extent Reports for detailed HTML execution reporting</li>
+        <li>Automated end-to-end business workflows including authentication, form validation, and data-driven scenarios</li>
       </ul>
       <a class="proj-link" href="https://github.com/abpatil005/selenium-framework" target="_blank">
         ⟶ &nbsp; github.com/abpatil005/selenium-framework
@@ -1168,7 +1348,28 @@ footer span { color: var(--gold); }
     </div>
     <div style="text-align:center;padding-top:8px;">
       <div style="font-family:'DM Mono',monospace;font-size:64px;opacity:0.15;line-height:1;">{ }</div>
-      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);margin-top:8px;letter-spacing:1px;">PUBLIC REPO</div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);margin-top:8px;letter-spacing:1px;">UI AUTOMATION</div>
+    </div>
+  </div>
+
+  <div class="project-card reveal reveal-delay-3">
+    <div>
+      <div class="proj-name">API Test Automation Framework</div>
+      <div class="proj-stack">JAVASCRIPT &nbsp;·&nbsp; POSTMAN &nbsp;·&nbsp; NEWMAN &nbsp;·&nbsp; NODE.JS &nbsp;·&nbsp; GITHUB ACTIONS</div>
+      <p class="proj-desc">A scalable API automation framework using Postman and Newman CLI with full CI/CD integration via GitHub Actions.</p>
+      <ul class="proj-bullets">
+        <li>Designed API automation framework using Postman collections and Newman CLI for command-line execution</li>
+        <li>Automated CRUD operations for REST APIs with response validation, status code assertions, and environment-based configuration</li>
+        <li>Configured GitHub Actions CI pipeline to automatically trigger API tests on every code commit</li>
+        <li>Generated structured HTML test reports for build visibility and enabled multi-environment execution support</li>
+      </ul>
+      <a class="proj-link" href="https://github.com/abpatil005/api-automation-framework" target="_blank">
+        ⟶ &nbsp; github.com/abpatil005/api-automation-framework
+      </a>
+    </div>
+    <div style="text-align:center;padding-top:8px;">
+      <div style="font-family:'DM Mono',monospace;font-size:64px;opacity:0.15;line-height:1;">{ }</div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);margin-top:8px;letter-spacing:1px;">API AUTOMATION</div>
     </div>
   </div>
 </section>
@@ -1205,8 +1406,8 @@ footer span { color: var(--gold); }
     </p>
 
     <div class="contact-links">
-      <a class="contact-link" href="mailto:abhishekpatil620@gmail.com">
-        ✉ &nbsp; abhishekpatil620@gmail.com
+      <a class="contact-link" href="/cdn-cgi/l/email-protection#1475767c7d677c717f6475607d78222624547379757d783a777b79">
+        ✉ &nbsp; <span class="__cf_email__" data-cfemail="59383b31302a313c3229382d30356f6b69193e34383035773a3634">[email&#160;protected]</span>
       </a>
       <a class="contact-link" href="tel:+919535965125">
         📞 &nbsp; +91-9535965125
@@ -1219,13 +1420,13 @@ footer span { color: var(--gold); }
       </a>
     </div>
 
-    <a href="mailto:abhishekpatil620@gmail.com" class="btn-primary">Send Me a Message</a>
+    <a href="/cdn-cgi/l/email-protection#1677747e7f657e737d6677627f7a20242656717b777f7a3875797b" class="btn-primary">Send Me a Message</a>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer>
-  <p>© 2026 <span>Abhishek Patil</span> — QA Automation &amp; Manual Testing Engineer</p>
+  <p>© 2026 <span>Abhishek Patil</span> — QA Automation Engineer | Selenium | API | CI/CD</p>
   <p>Built with precision. Tested with care <span>✦</span></p>
 </footer>
 
@@ -1236,7 +1437,21 @@ footer span { color: var(--gold); }
 }
 </style>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Hamburger menu
+function toggleMobile() {
+  const menu = document.getElementById('mobileMenu');
+  const ham = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Custom cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
